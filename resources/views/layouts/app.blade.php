@@ -16,21 +16,14 @@
                 <a href="/" class="p-3">Home</a>
             </li>
 
-            @auth
             <li>
                 <a href="" class="p-3">Dashboard</a>
             </li>
-            @endauth
 
-            <li>
-                <a href="   " class="p-3">Ongoing Campaign</a>
-            </li>
+
         </ul>
 
         <ul class="flex items-center">
-            <li>
-                <a href="/" class="p-3">Jamy</a>
-            </li>
             <li>
                 <a href="" class="p-3">Login</a>
             </li>
