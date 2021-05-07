@@ -28,8 +28,18 @@ class AuthController extends Controller
 
         if(Auth::attempt($credentials))
         {
-            //dd(Auth::user());
-            return view('admin.dashboard');
+
+            if(Auth::user()->role->roles== 'admin')
+            {
+                session(['role'=>'admin']);
+                return redirect()->route('admin.dashboard');
+            }
+            else if(Auth::user()->role->roles== 'user')
+            {
+                session(['role'=>'user']);
+                return redirect()->route('user.dashboard');
+            }
+
         }
         else{
             return back()->withErrors([

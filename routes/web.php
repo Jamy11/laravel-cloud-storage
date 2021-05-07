@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,13 +34,24 @@ Route::post('/signup', [AuthController::class, 'signUpCheck']);
 Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
 
 
+//middleware admin
+Route::group(['middleware'=>'admin'],function(){
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+    Route::group(['middleware'=>'auth.basic'],function(){
+        Route::get('admin/dashboard',[AdminController::class,'index'])->name('admin.dashboard');
+    });
+});
+
+//middleware user
+Route::group(['middleware'=>'user'],function(){
+
+    Route::group(['middleware'=>'auth.basic'],function(){
+        Route::get('user/dashboard',[UserController::class,'index'])->name('user.dashboard');
+    });
 });
 
 
-//admin
 
 
-//user
+
+
