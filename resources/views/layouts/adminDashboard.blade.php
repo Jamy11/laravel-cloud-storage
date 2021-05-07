@@ -35,7 +35,7 @@
     <div class="flex md:flex-row-reverse flex-wrap">
 
         <!--Main Content-->
-        <div class="w-full md:w-4/5 bg-gray-100">
+        <div class="w-full md:w-5/6 bg-gray-100">
         <div class="container bg-gray-100 pt-16 px-6">
             @yield('sidebar_content')
         </div>

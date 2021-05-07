@@ -46,17 +46,17 @@
                         </div>
                     @enderror
 
-                <div class="mb-4">
-                    <div class="flex items-center">
-                        <input type="checkbox" name="remember" id="remember" class="mr-2">
-                        <label for="remember">Remember me</label>
-                    </div>
-                </div>
 
                 <div>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded font-medium w-full">Login</button>
+                    <button type="submit" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-blue-400 hover:to-green-400 text-white px-4 py-3 rounded font-medium w-full">Login</button>
                 </div>
+
+
             </form>
+            <br>
+            <div>
+                <button type="submit" class="bg-gradient-to-r from-indigo-400 to-blue-500 hover:from-blue-400 hover:to-green-400 text-white px-4 py-3 rounded font-medium w-full">Forget Password</button>
+            </div>
         </div>
     </div>
 @endsection

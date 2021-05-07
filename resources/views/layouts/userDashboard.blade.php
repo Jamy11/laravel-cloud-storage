@@ -35,7 +35,7 @@
     <div class="flex md:flex-row-reverse flex-wrap">
 
         <!--Main Content-->
-        <div class="w-full md:w-4/5 bg-gray-100">
+        <div class="w-full md:w-5/6 bg-gray-100 md:h-screen">
         <div class="container bg-gray-100 pt-16 px-6">
             @yield('sidebar_content')
         </div>
@@ -46,7 +46,7 @@
         <div class="md:relative mx-auto lg:float-right lg:px-6">
             <ul class="list-reset flex flex-row md:flex-col text-center md:text-left">
                 <li class="mr-3 flex-1">
-                    <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
+                    <a href="{{route('user.dashboard')}}" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
                     <i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Dashboard</span>
                     </a>
                 </li>
@@ -61,13 +61,13 @@
                     </a>
                 </li>
                 <li class="mr-3 flex-1">
-                    <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
-                    <i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Public Folder</span>
+                    <a href="{{route('user.privateFolder')}}" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
+                    <i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Private Folder</span>
                     </a>
                 </li>
                 <li class="mr-3 flex-1">
                     <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
-                    <i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Private Folder</span>
+                    <i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Public Folder</span>
                     </a>
                 </li>
                 <li class="mr-3 flex-1">

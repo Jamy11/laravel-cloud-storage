@@ -10,4 +10,8 @@ class UserController extends Controller
     {
         return view('user.userDashboard');
     }
+    public function privateFolder()
+    {
+        return view('user.privateFolder');
+    }
 }

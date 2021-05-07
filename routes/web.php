@@ -42,11 +42,15 @@ Route::group(['middleware'=>'admin'],function(){
     });
 });
 
+
+
 //middleware user
 Route::group(['middleware'=>'user'],function(){
 
     Route::group(['middleware'=>'auth.basic'],function(){
         Route::get('user/dashboard',[UserController::class,'index'])->name('user.dashboard');
+
+        Route::get('user/privatefolder',[UserController::class,'privateFolder'])->name('user.privateFolder');
     });
 });
 
