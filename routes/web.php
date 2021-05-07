@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LogoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,15 +15,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//common
 Route::get('/', function () {
-    // return view('welcome');
-    echo '<h1>Hello</h1>';
-});
+    return view('welcome');
+})->name('home');
+
+
+
+Route::get('/signin', [AuthController::class, 'signInIndex'])->name('signin');
+Route::post('/signin', [AuthController::class, 'signInCheck']);
+
+Route::get('/signup', [AuthController::class, 'signUpIndex'])->name('signup');
+Route::post('/signup', [AuthController::class, 'signUpCheck']);
+
+Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
+
+
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+
+//admin
+
+
+//user

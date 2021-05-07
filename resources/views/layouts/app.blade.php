@@ -15,24 +15,32 @@
             <li>
                 <a href="/" class="p-3">Home</a>
             </li>
-
+            @auth
             <li>
                 <a href="" class="p-3">Dashboard</a>
             </li>
+            @endauth
+
 
 
         </ul>
 
         <ul class="flex items-center">
+            @guest
             <li>
-                <a href="" class="p-3">Login</a>
+                <a href="{{route('signin')}}" class="p-3">Login</a>
             </li>
             <li>
-                <a href="register" class="p-3">Register</a>
+                <a href="{{route('signup')}}" class="p-3">Register</a>
             </li>
+            @endguest
+
+            @auth
             <li>
-                <a href="   " class="p-3">Logout</a>
+                <a href="" class="p-3">Logout</a>
             </li>
+            @endauth
+
         </ul>
     </nav>
 

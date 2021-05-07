@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Login
+    Sign In
 @endsection
 
 @section('content')
@@ -21,11 +21,11 @@
                     <input type="text" name="email" id="email" placeholder="Your email"
                     class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('email') border-red-500 @enderror" value="{{ old('email') }}">
 
-                    {{-- @error('email')
+                    @error('email')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
                         </div>
-                    @enderror --}}
+                    @enderror
                 </div>
 
                 <div class="mb-4">
@@ -33,13 +33,18 @@
                     <input type="password" name="password" id="password" placeholder="Choose a password"
                     class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('password') border-red-500 @enderror" value="">
 
-                    {{-- @error('password')
+                    @error('password')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
                         </div>
-                    @enderror --}}
+                    @enderror
                 </div>
 
+                @error('error')
+                        <div class="text-red-500 mt-2 text-sm">
+                            {{ $message }}
+                        </div>
+                    @enderror
 
                 <div class="mb-4">
                     <div class="flex items-center">

@@ -13,7 +13,7 @@
     <nav class="p-7 bg-white flex justify-between mb-6">
         <ul class="flex items-center">
             <li>
-                <a href="/" class="p-3">Home</a>
+                <a href="{{route('home')}}" class="p-3">Home</a>
             </li>
             <li>
                 <a href="" class="p-3">Dashboard</a>
@@ -22,10 +22,12 @@
 
         <ul class="flex items-center">
             <li>
-                <a href="register" class="p-3">Register</a>
+                <a href="" class="p-3">@auth
+                    {{Auth::user()->full_name}}
+                @endauth</a>
             </li>
             <li>
-                <a href="   " class="p-3">Logout</a>
+                <a href="{{route('logout')}}" class="p-3">Logout</a>
             </li>
         </ul>
     </nav>
