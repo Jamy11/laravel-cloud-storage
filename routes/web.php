@@ -31,6 +31,9 @@ Route::post('/signin', [AuthController::class, 'signInCheck']);
 Route::get('/signup', [AuthController::class, 'signUpIndex'])->name('signup');
 Route::post('/signup', [AuthController::class, 'signUpCheck']);
 
+Route::get('/forget-password', [AuthController::class, 'forgetPasswordIndex'])->name('forgetpass');
+Route::post('/forget-password', [AuthController::class, 'forgetPasswordRequest']);
+
 Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
 
 

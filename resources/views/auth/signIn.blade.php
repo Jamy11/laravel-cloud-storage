@@ -55,7 +55,9 @@
             </form>
             <br>
             <div>
-                <button type="submit" class="bg-gradient-to-r from-indigo-400 to-blue-500 hover:from-blue-400 hover:to-green-400 text-white px-4 py-3 rounded font-medium w-full">Forget Password</button>
+                <button type="submit" class="bg-gradient-to-r from-indigo-400 to-blue-500 hover:from-blue-400 hover:to-green-400 text-white px-4 py-3 rounded font-medium w-full">
+                    <a href="{{ route('forgetpass') }}">Forget Password</a>
+                </button>
             </div>
         </div>
     </div>

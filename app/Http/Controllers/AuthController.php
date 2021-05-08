@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ForgetPassEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 class AuthController extends Controller
 {
@@ -94,5 +98,30 @@ class AuthController extends Controller
         $user->save();
 
         return redirect()->route('signin');
+    }
+
+    public function forgetPasswordIndex()
+    {
+        return view('auth.forgetPassword');
+    }
+
+    public function forgetPasswordRequest(Request $req)
+    {
+        $user = User::where('email', $req->email)
+            ->get()->first();
+
+        if($user != null) {
+            $password = Str::random(8);
+            $user->password = Hash::make($password);
+            $user->save();
+
+            Mail::to($req->email)->send(new ForgetPassEmail($password));
+            session()->flash('success', 'Request successful');
+            return back();
+        }
+
+        return back()->withErrors([
+            'error' => 'Request failed!'
+        ]);
     }
 }

@@ -17,7 +17,11 @@
             </li>
             @auth
             <li>
-                <a href="" class="p-3">Dashboard</a>
+                @if(session('role') == 'admin')
+                    <a href="{{ route('admin.dashboard') }}" class="p-3">Dashboard</a>
+                @else
+                    <a href="{{ route('user.dashboard') }}" class="p-3">Dashboard</a>
+                @endif
             </li>
             @endauth
 
