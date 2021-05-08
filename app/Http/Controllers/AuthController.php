@@ -107,6 +107,10 @@ class AuthController extends Controller
 
     public function forgetPasswordRequest(Request $req)
     {
+        $req->validate([
+            'email' => 'required|email:rfc'
+        ]);
+
         $user = User::where('email', $req->email)
             ->get()->first();
 
