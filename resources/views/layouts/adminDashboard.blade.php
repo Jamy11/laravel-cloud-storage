@@ -10,13 +10,13 @@
 
 </head>
 <body class="bg-gray-200 leading-normal tracking-normal">
-    <nav class="p-7 bg-white flex justify-between mb-6">
+    <nav class="sticky top-0 p-7 bg-white flex justify-between mb-6">
         <ul class="flex items-center">
             <li>
                 <a href="{{route('home')}}" class="p-3">Home</a>
             </li>
             <li>
-                <a href="" class="p-3">Dashboard</a>
+                <a href="{{ route('admin.dashboard') }}" class="p-3">Dashboard</a>
             </li>
         </ul>
 
@@ -46,8 +46,8 @@
         <div class="md:relative mx-auto lg:float-right lg:px-6">
             <ul class="list-reset flex flex-row md:flex-col text-center md:text-left">
                 <li class="mr-3 flex-1">
-                    <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
-                    <i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Link</span>
+                    <a href="{{ route('admin.profile') }}" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
+                    <i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Profile</span>
                     </a>
                 </li>
                 <li class="mr-3 flex-1">
