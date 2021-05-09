@@ -10,7 +10,7 @@
 
 </head>
 <body class="bg-gray-200 leading-normal tracking-normal">
-    <nav class="p-7 bg-white flex justify-between mb-6">
+    <nav class="sticky top-0 p-7 bg-white flex justify-between mb-6">
         <ul class="flex items-center">
             <li>
                 <a href="{{route('home')}}" class="p-3">Home</a>
@@ -35,7 +35,7 @@
     <div class="flex md:flex-row-reverse flex-wrap">
 
         <!--Main Content-->
-        <div class="w-full md:w-5/6 bg-gray-100 md:h-screen">
+        <div class="w-full md:w-5/6 bg-gray-100 md:h-screen top-5 ">
         <div class="container bg-gray-100 pt-16 px-6">
             @yield('sidebar_content')
         </div>

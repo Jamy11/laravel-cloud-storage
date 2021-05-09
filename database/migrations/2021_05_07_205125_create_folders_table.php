@@ -19,8 +19,8 @@ class CreateFoldersTable extends Migration
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->cascadeOnDelete();
-            $table->unsignedBigInteger('parent_id');
-            $table->boolean('shared')->default(false);
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->string('shared');
             $table->boolean('archived')->default(false);
             $table->timestamps();
         });

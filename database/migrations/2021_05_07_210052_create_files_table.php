@@ -22,7 +22,7 @@ class CreateFilesTable extends Migration
                 ->cascadeOnDelete();
             $table->foreignId('folder_id')
                 ->constrained('folders')
-                ->cascadeOnDelete();
+                ->cascadeOnDelete()->nullable();
             $table->timestamps();
         });
     }

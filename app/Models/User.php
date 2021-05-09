@@ -45,4 +45,27 @@ class User extends Authenticatable
     {
         return $this->hasOne(Role::class,'id','role_id');
     }
+
+    //parent folder
+    public function privateParentFolder()
+    {
+        return $this->hasMany(Folder::class,'user_id','id')->where('parent_id',null)->where('shared','private')->where('archived',0);
+    }
+
+    public function privateParentFiles()
+    {
+        return $this->hasMany(File::class,'user_id','id')->where('folder_id',null)->where('archived',0);
+    }
+
+
+    //parent sub folder
+    public function privateSubFolder($id)
+    {
+        return $this->hasMany(Folder::class,'user_id','id')->where('parent_id',$id)->where('shared','private')->where('archived',0);
+    }
+
+    public function privateSubFiles($id)
+    {
+        return $this->hasMany(File::class,'user_id','id')->where('folder_id',$id)->where('archived',0);
+    }
 }

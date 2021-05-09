@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FolderController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -52,9 +53,26 @@ Route::group(['middleware'=>'admin'],function(){
 Route::group(['middleware'=>'user'],function(){
 
     Route::group(['middleware'=>'auth.basic'],function(){
-        Route::get('user/dashboard',[UserController::class,'index'])->name('user.dashboard');
+        Route::get('/user/dashboard',[UserController::class,'index'])->name('user.dashboard');
 
-        Route::get('user/privatefolder',[UserController::class,'privateFolder'])->name('user.privateFolder');
+
+
+        //privatefolder
+        Route::get('/user/privatefolder',[FolderController::class,'privateFolder'])->name('user.privateFolder');
+        Route::post('/user/privatefolder',[FolderController::class,'privateFolderAdd']);
+        Route::get('/user/privatefolder/upload',[FolderController::class,'privateFolderUpload'])->name('user.privateFolderUpload');
+        Route::post('/user/privatefolder/upload',[FolderController::class,'uploadStatus'])->name('user.privateFolderUpload');
+
+
+        Route::get('/user/download/{filename}',[FolderController::class,'download'])->name('download');
+
+        //Private folder sub
+
+        Route::get('/user/privatesubfolder/{id}',[FolderController::class,'privateSubFolder'])->name('user.privateSubFolder');
+        Route::post('/user/privatesubfolder/{id}',[FolderController::class,'privateSubFolderAdd']);
+        Route::get('/user/privatesubfolder/upload/{id}',[FolderController::class,'privateSubFolderUpload'])->name('user.privateSubFolderUpload');
+        Route::post('/user/privatesubfolder/upload/{id}',[FolderController::class,'uploadStatusSub'])->name('user.privateSubFolderUpload');
+
     });
 });
 
