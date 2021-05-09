@@ -147,4 +147,21 @@ class FolderController extends Controller
         return redirect()->route('user.privateSubFolder',[Crypt::encrypt($id)]);
 
     }
+//common method         ////////////////////////////////////////////
+    public function archiveFile($id)
+    {
+        $file = File::find($id);
+        $file->archived = true;
+        $file->save();
+        return back();
+    }
+
+    public function archiveFolder($id)
+    {
+        $id = Crypt::decrypt($id);
+        $folder = Folder::find($id);
+        $folder->archived = true;
+        $folder->save();
+        return back();
+    }
 }

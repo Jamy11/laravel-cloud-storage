@@ -66,6 +66,9 @@ Route::group(['middleware'=>'user'],function(){
 
         Route::get('/user/download/{filename}',[FolderController::class,'download'])->name('download');
 
+
+        Route::get('/user/archiveFile/{id}',[FolderController::class,'archiveFile'])->name('archiveFile');
+        Route::get('/user/archiveFolder/{id}',[FolderController::class,'archiveFolder'])->name('archiveFolder');
         //Private folder sub
 
         Route::get('/user/privatesubfolder/{id}',[FolderController::class,'privateSubFolder'])->name('user.privateSubFolder');

@@ -52,7 +52,7 @@
                     <th class="p-4 w-1/4">Folder Name</th>
                     <th class="p-4 w-1/4"></th>
                     <th class="p-4 w-1/4"></th>
-                    <th class="p-4 w-1/4"></th>
+                    <th class="p-4 w-1/4">Archive</th>
                 </tr>
             </thead>
         <!-- Remove the nasty inline CSS fixed height on production and replace it with a CSS class — this is just for demonstration purposes! -->
@@ -66,7 +66,7 @@
                         <td class="p-4 w-1/4"><a href="{{route('user.privateSubFolder',[Crypt::encrypt($folder->id)])}}" class="text-purple-700 text-opacity-100 hover:text-green-900" >{{$folder->folder_name}}</a> </td>
                         <td class="p-4 w-1/4"></td>
                         <td class="p-4 w-1/4"></td>
-                        <td class="p-4 w-1/4"></td>
+                        <td class="p-4 w-1/4"><a href="{{route('archiveFolder',[Crypt::encrypt($folder->id)] )}}" class="text-red-500 hover:text-red-700">Yes</a></td>
                     </tr>
 
                 @endforeach
@@ -109,7 +109,7 @@
                 <th class="p-4 w-1/4">File Name</th>
                 <th class="p-4 w-1/4"></th>
                 <th class="p-4 w-1/4"></th>
-                <th class="p-4 w-1/4"></th>
+                <th class="p-4 w-1/4">Archive</th>
             </tr>
         </thead>
     <!-- Remove the nasty inline CSS fixed height on production and replace it with a CSS class — this is just for demonstration purposes! -->
@@ -123,7 +123,7 @@
                     <td class="p-4 w-1/4"><a href="{{route('download',[$file->file_name])}}" class="text-purple-700 text-opacity-100 hover:text-green-900" >{{$file->file_name}}</a> </td>
                     <td class="p-4 w-1/4"></td>
                     <td class="p-4 w-1/4"></td>
-                    <td class="p-4 w-1/4"></td>
+                    <td class="p-4 w-1/4"><a href="{{route('archiveFile',[$file->id])}}" class="text-red-500 hover:text-red-700">Yes</a></td>
                 </tr>
 
             @endforeach
