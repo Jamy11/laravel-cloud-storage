@@ -43,6 +43,8 @@ Route::group(['middleware'=>'admin'],function(){
     Route::group(['middleware'=>'auth.basic'],function(){
         Route::get('admin/dashboard',[AdminController::class,'index'])->name('admin.dashboard');
         Route::get('admin/profile', [AdminController::class, 'show'])->name('admin.profile');
+        Route::get('admin/profile/edit', [AdminController::class, 'edit'])->name('admin.edit_profile');
+        Route::post('admin/profile/edit', [AdminController::class, 'update']);
     });
 });
 
