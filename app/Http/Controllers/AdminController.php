@@ -58,7 +58,7 @@ class AdminController extends Controller
 
         if($user->save()) {
             session()->flash('success', 'Account information updated successfully');
-            return back();
+            return redirect()->route('admin.profile');
         }
 
         return back()->withError([

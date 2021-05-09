@@ -38,6 +38,7 @@
                     @enderror
                 </div>
 
+                @if(url()->current() == route('admin.edit_profile'))
                 <div class="flex flex-col space-y-4 md:space-y-0 md:flex-col md:space-x-0">
                     <div class="form-item w-full">
                         <label class="text-xl ">Password</label>
@@ -61,6 +62,7 @@
                     </div>
                     @enderror
                 </div>
+                @endif
 
                 @if(url()->current() == route('admin.edit_profile'))
                 <div class="flex flex-col space-y-4 md:space-y-0 md:flex-col md:space-x-0">
