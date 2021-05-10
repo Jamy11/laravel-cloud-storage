@@ -76,6 +76,13 @@ Route::group(['middleware'=>'user'],function(){
         Route::get('/user/privatesubfolder/upload/{id}',[FolderController::class,'privateSubFolderUpload'])->name('user.privateSubFolderUpload');
         Route::post('/user/privatesubfolder/upload/{id}',[FolderController::class,'uploadStatusSub'])->name('user.privateSubFolderUpload');
 
+
+        //////////////////////   Public Folder                                 ///////////////////////////////////////////////////////
+
+        Route::get('/user/publicfolder',[FolderController::class,'publicFolder'])->name('user.publicFolder');
+        //Route::post('/user/privatefolder',[FolderController::class,'privateFolderAdd']);
+
+
     });
 });
 

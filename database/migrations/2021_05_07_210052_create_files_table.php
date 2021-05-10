@@ -16,13 +16,15 @@ class CreateFilesTable extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->string('file_name');
+            $table->string('file_uniquename')->nullable();
+            $table->string('shared');
             $table->boolean('archived')->default(false);
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->cascadeOnDelete();
-            $table->foreignId('folder_id')
+            $table->foreignId('folder_id')->nullable()
                 ->constrained('folders')
-                ->cascadeOnDelete()->nullable();
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

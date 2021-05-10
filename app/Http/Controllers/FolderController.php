@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Crypt;
 
 class FolderController extends Controller
 {
-    //
+    ///////////////////////////  Private Folder  /////////////////////////////////////////////////////////
     public function privateFolder()
     {
         $folders = Auth::user()->privateParentFolder()->get();
@@ -54,11 +54,13 @@ class FolderController extends Controller
         {
             foreach($req->file('files') as $file){
                 $File = new File;
-                $name = time().rand(1,100).$file->getClientOriginalName();
+                $name = date('y-m-d').time().rand(1,1000).$file->getClientOriginalName();
                 $file->move('uploads/files',$name);
 
 
-                $File->file_name = $name;
+                $File->file_name = $file->getClientOriginalName();
+                $File->file_uniquename = $name;
+                $File->shared = 'private';
                 $File->archived = false;
                 $File->user_id = Auth::user()->id;
                 $File->folder_id = null;
@@ -69,11 +71,6 @@ class FolderController extends Controller
 
         return redirect()->route('user.privateFolder');
 
-    }
-    public function download($filename)
-    {
-        $path=public_path("uploads/files/".$filename);
-        return response()->download($path);
     }
 
 
@@ -112,6 +109,8 @@ class FolderController extends Controller
         $folder->save();
         return redirect()->route('user.privateSubFolder',[Crypt::encrypt($id)]);
     }
+
+
     public function privateSubFolderUpload()
     {
         return view('user.privateFolderFileUpload');
@@ -134,7 +133,9 @@ class FolderController extends Controller
                 $file->move('uploads/files',$name);
 
 
-                $File->file_name = $name;
+                $File->file_name = $file->getClientOriginalName();
+                $File->file_uniquename = $name;
+                $File->shared = 'private';
                 $File->archived = false;
                 $File->user_id = Auth::user()->id;
                 $File->folder_id = $id;
@@ -147,7 +148,7 @@ class FolderController extends Controller
         return redirect()->route('user.privateSubFolder',[Crypt::encrypt($id)]);
 
     }
-//common method         ////////////////////////////////////////////
+//////////////// common method         ////////////////////////////////////////////
     public function archiveFile($id)
     {
         $file = File::find($id);
@@ -164,4 +165,24 @@ class FolderController extends Controller
         $folder->save();
         return back();
     }
+
+
+    public function download($filename)
+    {
+        $path=public_path("uploads/files/".$filename);
+        return response()->download($path);
+    }
+
+///////////////////////////////////////////////////  public folder //////////////////////////////////////////////
+
+    public function publicFolder()
+    {
+        $folders = Auth::user()->publicParentFolder()->get();
+
+        $files = Auth::user()->publicParentFiles()->get();
+
+        return view('user.publicFolder')->with('folders',$folders)->with('files',$files);
+    }
+
+
 }

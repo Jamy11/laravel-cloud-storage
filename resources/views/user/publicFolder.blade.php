@@ -5,7 +5,7 @@
 @endsection
 
 @section('sidebar_content')
-    <center><h1 class="text-5xl text-green-900" >Private Folder</h1></center>
+    <center><h1 class="text-5xl text-green-900" >Public Folder</h1></center>
 <br>
 
 <br>
@@ -120,7 +120,7 @@
             @foreach ($files as $file)
             <tr class="flex w-full mb-4">
 
-                    <td class="p-4 w-1/4"><a href="{{route('download',[$file->file_uniquename])}}" class="text-purple-700 text-opacity-100 hover:text-green-900" >{{$file->file_name}}</a> </td>
+                    <td class="p-4 w-1/4"><a href="{{route('download',[$file->file_name])}}" class="text-purple-700 text-opacity-100 hover:text-green-900" >{{$file->file_name}}</a> </td>
                     <td class="p-4 w-1/4"></td>
                     <td class="p-4 w-1/4"></td>
                     <td class="p-4 w-1/4"><a href="{{route('archiveFile',[$file->id])}}" class="text-red-500 hover:text-red-700">Yes</a></td>
@@ -133,19 +133,5 @@
     @endif
 
 
-    @if (Route::current()->getName() =='user.privateSubFolder')
-        <center>
-            <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-                <a href="{{ url()->previous() }}">
-                    <button type='submit' class="bg-green-500 text-white px-4 py-3 rounded font-medium w-full">
-                    Back To Previous Page
-                    </button>
-                </a>
-            </div>
-        </center>
-    @endif
-<br>
-<br>
-<br>
 @endsection
 

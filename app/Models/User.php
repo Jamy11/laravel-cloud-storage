@@ -46,7 +46,7 @@ class User extends Authenticatable
         return $this->hasOne(Role::class,'id','role_id');
     }
 
-    //parent folder
+    ///////////////////// parent folder /////////////////////////
     public function privateParentFolder()
     {
         return $this->hasMany(Folder::class,'user_id','id')->where('parent_id',null)->where('shared','private')->where('archived',0);
@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function privateParentFiles()
     {
-        return $this->hasMany(File::class,'user_id','id')->where('folder_id',null)->where('archived',0);
+        return $this->hasMany(File::class,'user_id','id')->where('folder_id',null)->where('archived',0)->where('shared','private');
     }
 
 
@@ -66,6 +66,19 @@ class User extends Authenticatable
 
     public function privateSubFiles($id)
     {
-        return $this->hasMany(File::class,'user_id','id')->where('folder_id',$id)->where('archived',0);
+        return $this->hasMany(File::class,'user_id','id')->where('folder_id',$id)->where('archived',0)->where('shared','private');
     }
+
+
+    /////////////////////////////////////////// public folder /////////////////////////////////
+    public function publicParentFolder()
+    {
+        return $this->hasMany(Folder::class,'user_id','id')->where('parent_id',null)->where('shared','public')->where('archived',0);
+    }
+
+    public function publicParentFiles()
+    {
+        return $this->hasMany(File::class,'user_id','id')->where('folder_id',null)->where('archived',0);
+    }
+
 }
