@@ -45,6 +45,9 @@ Route::group(['middleware'=>'admin'],function(){
         Route::get('admin/profile', [AdminController::class, 'show'])->name('admin.profile');
         Route::get('admin/profile/edit', [AdminController::class, 'edit'])->name('admin.edit_profile');
         Route::post('admin/profile/edit', [AdminController::class, 'update']);
+        Route::get('admin/user/add', [AdminController::class, 'add_user'])->name('admin.add_user');
+        Route::post('admin/user/add', [AdminController::class, 'store_user']);
+
     });
 });
 

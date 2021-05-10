@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -63,6 +65,52 @@ class AdminController extends Controller
 
         return back()->withError([
             'error' => 'Operation failed!'
+        ]);
+    }
+
+    public function add_user()
+    {
+        $roles = Role::all();
+        return view('admin.add_user')->withRoles($roles);
+    }
+
+    public function store_user(Request $request)
+    {
+        $request->validate([
+            'full_name' => 'required',
+            'email' => 'required|email:rfc|unique:users,email',
+            'password' => 'required|confirmed|min:5|max:20',
+            'password_confirmation' => 'required|min:5|max:20',
+            'address' => 'required',
+            'phone' => 'required|numeric',
+            'image' => 'file|image|max:2048'
+        ]);
+
+        $newUser = new User();
+        $newUser->full_name = $request->full_name;
+        $newUser->email = $request->email;
+        $newUser->password = Hash::make($request->password);
+        $newUser->address = $request->address;
+        $newUser->phone = $request->phone;
+        $newUser->role_id = $request->roles;
+
+        if($request->hasFile('image')) {
+            if($newUser->image) {
+                File::delete('uploads/images/'.$newUser->image);
+            }
+            $file_name = date('y-m-d').time().'.'.$request->file('image')
+                    ->getClientOriginalExtension();
+            $newUser->image = $file_name;
+            $request->file('image')->move('uploads/images', $file_name);
+        }
+
+        if($newUser->save()) {
+            session()->flash('success', 'Account created successfully');
+            return back();
+        }
+
+        return back()->withError([
+            'error' => 'Operation Failed!'
         ]);
     }
 }
