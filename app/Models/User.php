@@ -78,7 +78,18 @@ class User extends Authenticatable
 
     public function publicParentFiles()
     {
-        return $this->hasMany(File::class,'user_id','id')->where('folder_id',null)->where('archived',0);
+        return $this->hasMany(File::class,'user_id','id')->where('folder_id',null)->where('archived',0)->where('shared','public');
+    }
+
+    //public parent sub folder
+    public function publicSubFolder($id)
+    {
+        return $this->hasMany(Folder::class,'user_id','id')->where('parent_id',$id)->where('shared','public')->where('archived',0);
+    }
+
+    public function publicSubFiles($id)
+    {
+        return $this->hasMany(File::class,'user_id','id')->where('folder_id',$id)->where('archived',0)->where('shared','public');
     }
 
 }

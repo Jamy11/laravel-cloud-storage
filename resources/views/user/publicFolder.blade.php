@@ -63,7 +63,7 @@
                 @foreach ($folders as $folder)
                 <tr class="flex w-full mb-4">
 
-                        <td class="p-4 w-1/4"><a href="{{route('user.privateSubFolder',[Crypt::encrypt($folder->id)])}}" class="text-purple-700 text-opacity-100 hover:text-green-900" >{{$folder->folder_name}}</a> </td>
+                        <td class="p-4 w-1/4"><a href="{{route('user.publicSubFolder',[Crypt::encrypt($folder->id)])}}" class="text-purple-700 text-opacity-100 hover:text-green-900" >{{$folder->folder_name}}</a> </td>
                         <td class="p-4 w-1/4"></td>
                         <td class="p-4 w-1/4"></td>
                         <td class="p-4 w-1/4"><a href="{{route('archiveFolder',[Crypt::encrypt($folder->id)] )}}" class="text-red-500 hover:text-red-700">Yes</a></td>
@@ -81,14 +81,14 @@
     {{-- files --}}
     <center>
         <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-            @if (Route::current()->getName() =='user.privateFolder')
-                <a href="{{route('user.privateFolderUpload')}}">
+            @if (Route::current()->getName() =='user.publicFolder')
+                <a href="{{route('user.publicFolderUpload')}}">
                     <button type='submit' class="bg-blue-500 text-white px-4 py-3 rounded font-medium w-full">
                     Add Files
                     </button>
                 </a>
-            @elseif (Route::current()->getName() =='user.privateSubFolder')
-                <a href="{{route('user.privateSubFolderUpload',[Crypt::encrypt($id)])}}">
+            @elseif (Route::current()->getName() =='user.publicSubFolder')
+                <a href="{{route('user.publicSubFolderUpload',[Crypt::encrypt($id)])}}">
                     <button type='submit' class="bg-blue-500 text-white px-4 py-3 rounded font-medium w-full">
                     Add Files
                     </button>
@@ -120,7 +120,7 @@
             @foreach ($files as $file)
             <tr class="flex w-full mb-4">
 
-                    <td class="p-4 w-1/4"><a href="{{route('download',[$file->file_name])}}" class="text-purple-700 text-opacity-100 hover:text-green-900" >{{$file->file_name}}</a> </td>
+                    <td class="p-4 w-1/4"><a href="{{route('download',[$file->file_uniquename])}}" class="text-purple-700 text-opacity-100 hover:text-green-900" >{{$file->file_name}}</a> </td>
                     <td class="p-4 w-1/4"></td>
                     <td class="p-4 w-1/4"></td>
                     <td class="p-4 w-1/4"><a href="{{route('archiveFile',[$file->id])}}" class="text-red-500 hover:text-red-700">Yes</a></td>
@@ -133,5 +133,19 @@
     @endif
 
 
+    @if (Route::current()->getName() =='user.publicSubFolder')
+        <center>
+            <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+                <a href="{{ url()->previous() }}">
+                    <button type='submit' class="bg-green-500 text-white px-4 py-3 rounded font-medium w-full">
+                    Back To Previous Page
+                    </button>
+                </a>
+            </div>
+        </center>
+    @endif
+<br>
+<br>
+<br>
 @endsection
 

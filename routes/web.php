@@ -57,30 +57,46 @@ Route::group(['middleware'=>'user'],function(){
 
 
 
-        //privatefolder
+        /////////////////////////////////  privatefolder      /////////////////////////////////
+
         Route::get('/user/privatefolder',[FolderController::class,'privateFolder'])->name('user.privateFolder');
         Route::post('/user/privatefolder',[FolderController::class,'privateFolderAdd']);
         Route::get('/user/privatefolder/upload',[FolderController::class,'privateFolderUpload'])->name('user.privateFolderUpload');
-        Route::post('/user/privatefolder/upload',[FolderController::class,'uploadStatus'])->name('user.privateFolderUpload');
+        Route::post('/user/privatefolder/upload',[FolderController::class,'privateUploadStatus'])->name('user.privateFolderUpload');
 
 
-        Route::get('/user/download/{filename}',[FolderController::class,'download'])->name('download');
-
-
-        Route::get('/user/archiveFile/{id}',[FolderController::class,'archiveFile'])->name('archiveFile');
-        Route::get('/user/archiveFolder/{id}',[FolderController::class,'archiveFolder'])->name('archiveFolder');
         //Private folder sub
 
         Route::get('/user/privatesubfolder/{id}',[FolderController::class,'privateSubFolder'])->name('user.privateSubFolder');
         Route::post('/user/privatesubfolder/{id}',[FolderController::class,'privateSubFolderAdd']);
         Route::get('/user/privatesubfolder/upload/{id}',[FolderController::class,'privateSubFolderUpload'])->name('user.privateSubFolderUpload');
-        Route::post('/user/privatesubfolder/upload/{id}',[FolderController::class,'uploadStatusSub'])->name('user.privateSubFolderUpload');
+        Route::post('/user/privatesubfolder/upload/{id}',[FolderController::class,'privateUploadStatusSub'])->name('user.privateSubFolderUpload');
+
+
+
+        //////////////////////////////////// common method /////////////////////////
+        Route::get('/user/download/{filename}',[FolderController::class,'download'])->name('download');
+
+        Route::get('/user/archiveFile/{id}',[FolderController::class,'archiveFile'])->name('archiveFile');
+        Route::get('/user/archiveFolder/{id}',[FolderController::class,'archiveFolder'])->name('archiveFolder');
+
+
 
 
         //////////////////////   Public Folder                                 ///////////////////////////////////////////////////////
 
         Route::get('/user/publicfolder',[FolderController::class,'publicFolder'])->name('user.publicFolder');
-        //Route::post('/user/privatefolder',[FolderController::class,'privateFolderAdd']);
+        Route::post('/user/publicfolder',[FolderController::class,'publicFolderAdd']);
+        Route::get('/user/publicfolder/upload',[FolderController::class,'publicFolderUpload'])->name('user.publicFolderUpload');
+        Route::post('/user/publicfolder/upload',[FolderController::class,'publicUploadStatus'])->name('user.publicFolderUpload');
+
+        /////// Public folder sub
+        Route::get('/user/publicsubfolder/{id}',[FolderController::class,'publicSubFolder'])->name('user.publicSubFolder');
+        Route::post('/user/publicsubfolder/{id}',[FolderController::class,'publicSubFolderAdd']);
+        Route::get('/user/publicsubfolder/upload/{id}',[FolderController::class,'publicSubFolderUpload'])->name('user.publicSubFolderUpload');
+        Route::post('/user/publicsubfolder/upload/{id}',[FolderController::class,'publicUploadStatusSub'])->name('user.publicSubFolderUpload');
+
+
 
 
     });
