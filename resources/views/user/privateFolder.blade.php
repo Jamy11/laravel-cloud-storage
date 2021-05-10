@@ -66,7 +66,7 @@
                         <td class="p-4 w-1/4"><a href="{{route('user.privateSubFolder',[Crypt::encrypt($folder->id)])}}" class="text-purple-700 text-opacity-100 hover:text-green-900" >{{$folder->folder_name}}</a> </td>
                         <td class="p-4 w-1/4"></td>
                         <td class="p-4 w-1/4"></td>
-                        <td class="p-4 w-1/4"><a href="{{route('archiveFolder',[Crypt::encrypt($folder->id)] )}}" class="text-red-500 hover:text-red-700">Yes</a></td>
+                        <td class="p-4 w-1/4"><a href="{{route('archiveFolder',[Crypt::encrypt($folder->id)] )}}" class="text-red-500 hover:text-red-700">I want to Archive it.</a></td>
                     </tr>
 
                 @endforeach
@@ -123,7 +123,7 @@
                     <td class="p-4 w-1/4"><a href="{{route('download',[$file->file_uniquename])}}" class="text-purple-700 text-opacity-100 hover:text-green-900" >{{$file->file_name}}</a> </td>
                     <td class="p-4 w-1/4"></td>
                     <td class="p-4 w-1/4"></td>
-                    <td class="p-4 w-1/4"><a href="{{route('archiveFile',[$file->id])}}" class="text-red-500 hover:text-red-700">Yes</a></td>
+                    <td class="p-4 w-1/4"><a href="{{route('archiveFile',[$file->id])}}" class="text-red-500 hover:text-red-700">I want to Archive it.</a></td>
                 </tr>
 
             @endforeach

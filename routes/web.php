@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FolderController;
 use App\Http\Controllers\LogoutController;
@@ -59,6 +60,18 @@ Route::group(['middleware'=>'user'],function(){
 
 
 
+
+
+
+
+
+
+        ////////////////////////////////// archive folder view /////////////////////////////
+        Route::get('/user/archive',[ArchiveController::class,'index'])->name('user.archive');
+        Route::get('/user/unmakearchivefolder/{id}',[ArchiveController::class,'unmakeArchiveFolder'])->name('user.unmakeArchiveFolder');
+        Route::get('/user/unmakearchivefile/{id}',[ArchiveController::class,'unmakeArchiveFile'])->name('user.unmakeArchiveFile');
+
+
         /////////////////////////////////  privatefolder      /////////////////////////////////
 
         Route::get('/user/privatefolder',[FolderController::class,'privateFolder'])->name('user.privateFolder');
@@ -75,16 +88,6 @@ Route::group(['middleware'=>'user'],function(){
         Route::post('/user/privatesubfolder/upload/{id}',[FolderController::class,'privateUploadStatusSub'])->name('user.privateSubFolderUpload');
 
 
-
-        //////////////////////////////////// common method /////////////////////////
-        Route::get('/user/download/{filename}',[FolderController::class,'download'])->name('download');
-
-        Route::get('/user/archiveFile/{id}',[FolderController::class,'archiveFile'])->name('archiveFile');
-        Route::get('/user/archiveFolder/{id}',[FolderController::class,'archiveFolder'])->name('archiveFolder');
-
-
-
-
         //////////////////////   Public Folder                                 ///////////////////////////////////////////////////////
 
         Route::get('/user/publicfolder',[FolderController::class,'publicFolder'])->name('user.publicFolder');
@@ -98,7 +101,11 @@ Route::group(['middleware'=>'user'],function(){
         Route::get('/user/publicsubfolder/upload/{id}',[FolderController::class,'publicSubFolderUpload'])->name('user.publicSubFolderUpload');
         Route::post('/user/publicsubfolder/upload/{id}',[FolderController::class,'publicUploadStatusSub'])->name('user.publicSubFolderUpload');
 
+        //////////////////////////////////// common method /////////////////////////
+        Route::get('/user/download/{filename}',[FolderController::class,'download'])->name('download');
 
+        Route::get('/user/archiveFile/{id}',[FolderController::class,'archiveFile'])->name('archiveFile');
+        Route::get('/user/archiveFolder/{id}',[FolderController::class,'archiveFolder'])->name('archiveFolder');
 
 
     });

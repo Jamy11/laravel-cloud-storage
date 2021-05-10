@@ -92,4 +92,15 @@ class User extends Authenticatable
         return $this->hasMany(File::class,'user_id','id')->where('folder_id',$id)->where('archived',0)->where('shared','public');
     }
 
+
+    /////////////////////////////////////////////////// Archive  ///////////////////////////////////////////////////////////
+    public function archiveFolder()
+    {
+        return $this->hasMany(Folder::class,'user_id','id')->where('archived',1);
+    }
+
+    public function archiveFiles()
+    {
+        return $this->hasMany(File::class,'user_id','id')->where('archived',1);
+    }
 }
