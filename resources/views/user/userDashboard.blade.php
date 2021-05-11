@@ -5,5 +5,14 @@
 @endsection
 
 @section('sidebar_content')
-    <h1>User Dashboard</h1>
+
+    <center>
+        <h1 class="font-bold tracking-wide text-5xl mb-2 text-gray-700">
+            Welcome to Admin Dashboard
+        </h1>
+    </center>
+
+
+
+
 @endsection

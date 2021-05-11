@@ -60,9 +60,9 @@ Route::group(['middleware'=>'user'],function(){
 
     Route::group(['middleware'=>'auth.basic'],function(){
         Route::get('/user/dashboard',[UserController::class,'index'])->name('user.dashboard');
-
-
-
+        Route::get('/user/profile',[UserController::class,'profile'])->name('user.profile');
+        Route::get('/user/edit_profile',[UserController::class,'editProfileView'])->name('user.editProfile');
+        Route::post('/user/edit_profile',[UserController::class,'updateProfile'])->name('user.editProfile');
 
 
 
