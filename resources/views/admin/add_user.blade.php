@@ -75,7 +75,7 @@
                     type="text"
                     class="block border border-grey-light w-full p-3 rounded mb-4"
                     name="phone"
-                    placeholder="Phone" value="{{old('phone')}}"/>
+                    placeholder="Phone number including country code" value="{{old('phone')}}"/>
 
                 @error('phone')
                 <div class="text-red-500 mt-2 text-sm">

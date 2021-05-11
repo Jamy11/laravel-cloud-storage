@@ -112,6 +112,7 @@ class AuthController extends Controller
         ]);
 
         $user = User::where('email', $req->email)
+            ->where('phone', $req->phone)
             ->get()->first();
 
         if($user != null) {
