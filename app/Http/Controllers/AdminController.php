@@ -113,4 +113,32 @@ class AdminController extends Controller
             'error' => 'Operation Failed!'
         ]);
     }
+
+    public function add_roles()
+    {
+        return view('admin.add_roles');
+    }
+
+    public function store_roles(Request $request)
+    {
+        $request->validate([
+            'role' => 'required|regex:/^([a-zA-Z ]+)$/i'
+        ],
+        [
+            'regex' => 'Role only contain alphabets and spaces'
+        ]);
+
+        $role = new Role();
+        $data_str = str_replace(' ', '_', strtolower($request->role));
+        $role->roles = $data_str;
+
+        if($role->save()) {
+            session()->flash('success', 'Role added successfully');
+            return back();
+        }
+
+        return back()->withError([
+            'error' => 'Operation failed!'
+        ]);
+    }
 }

@@ -47,7 +47,8 @@ Route::group(['middleware'=>'admin'],function(){
         Route::post('admin/profile/edit', [AdminController::class, 'update']);
         Route::get('admin/user/add', [AdminController::class, 'add_user'])->name('admin.add_user');
         Route::post('admin/user/add', [AdminController::class, 'store_user']);
-
+        Route::get('admin/role/add', [AdminController::class, 'add_roles'])->name('admin.add_roles');
+        Route::post('admin/role/add', [AdminController::class, 'store_roles']);
     });
 });
 
