@@ -23,7 +23,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-
+Route::get('auth/google', [AuthController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
 
 Route::get('/signin', [AuthController::class, 'signInIndex'])->name('signin');
 Route::post('/signin', [AuthController::class, 'signInCheck']);
