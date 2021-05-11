@@ -75,7 +75,7 @@
                     type="text"
                     class="block border border-grey-light w-full p-3 rounded mb-4"
                     name="phone"
-                    placeholder="Phone" value="{{old('phone')}}"/>
+                    placeholder="Phone number including country code" value="{{old('phone')}}"/>
 
                 @error('phone')
                 <div class="text-red-500 mt-2 text-sm">
@@ -100,7 +100,7 @@
                     <optgroup label="User Roles">
                     @foreach($roles as $role)
                     <option class="block border border-grey-light w-full p-3 rounded mb-4" value="{{ $role->id }}" @if($role->roles == 'user') selected @endif>
-                        {{ ucfirst($role->roles) }}
+                        {{ str_replace('_', ' ', ucfirst($role->roles)) }}
                     </option>
                     @endforeach
                     </optgroup>

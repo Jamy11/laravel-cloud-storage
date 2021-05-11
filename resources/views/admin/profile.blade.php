@@ -96,7 +96,7 @@
 
                     <div class="form-item">
                         <label class="text-xl ">Phone</label>
-                        <input name="phone" type="text" value="{{ $user->phone }}" class="w-full border-2 appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 @error('phone') border-red-500 @enderror" @if(url()->current() != route('admin.edit_profile')) disabled @endif>
+                        <input name="phone" placeholder="Number including country code" type="text" value="{{ $user->phone }}" class="w-full border-2 appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 @error('phone') border-red-500 @enderror" @if(url()->current() != route('admin.edit_profile')) disabled @endif>
                         @error('phone')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}

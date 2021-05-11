@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ForgetPassEmail;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Testing\Fluent\Concerns\Has;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -112,6 +114,7 @@ class AuthController extends Controller
         ]);
 
         $user = User::where('email', $req->email)
+            ->where('phone', $req->phone)
             ->get()->first();
 
         if($user != null) {
@@ -127,5 +130,61 @@ class AuthController extends Controller
         return back()->withErrors([
             'error' => 'Request failed!'
         ]);
+    }
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        try {
+
+            $user = Socialite::driver('google')->stateless()->user();
+
+            $finduser = User::where('email', $user->email)->first();
+
+            if($finduser){
+                if(Auth::loginUsingId($finduser->only('id')))
+                {
+
+                    if(Auth::user()->role->roles== 'admin')
+                    {
+                        session(['role'=>'admin']);
+                        return redirect()->route('admin.dashboard');
+                    }
+                    else if(Auth::user()->role->roles== 'user')
+                    {
+                        session(['role'=>'user']);
+                        return redirect()->route('user.dashboard');
+                    }
+
+                }
+                else{
+                    return back()->withErrors([
+                        'error'=>'Please create an account before login.',
+                    ]);
+                }
+
+            } else {
+                $newUser = new User();
+                $newUser->full_name = $user->name;
+                $newUser->email = $user->email;
+                $newUser->address = '';
+                $newUser->phone = '';
+                $newUser->password = Hash::make(Str::random(8));
+                $newUser->role_id = Role::where('roles', 'user')->get()->first()->id;
+                $newUser->save();
+
+                Auth::loginUsingId($newUser->id);
+                session(['role'=>'user']);
+
+                return redirect()->route('user.dashboard');
+            }
+
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
     }
 }
