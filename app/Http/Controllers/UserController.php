@@ -31,6 +31,7 @@ class UserController extends Controller
         $request->validate([
             'full_name' => 'required',
             'email' => 'required|email:rfc|unique:users,email,'.Auth::user()->id,
+            'unique_link' =>'required||unique:users,unique_link,'.Auth::user()->id,
             'password' => 'required|confirmed|min:5|max:20',
             'password_confirmation' => 'required|min:5|max:20',
             'address' => 'required',
@@ -43,6 +44,7 @@ class UserController extends Controller
         Auth::user()->password = Hash::make($request->password);
         Auth::user()->address = $request->address;
         Auth::user()->phone = $request->phone;
+        Auth::user()->unique_link = str_replace(' ','_',$request->unique_link);
 
         if($request->hasFile('image')) {
             if(Auth::user()->image) {

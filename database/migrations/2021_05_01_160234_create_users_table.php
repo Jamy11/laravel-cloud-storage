@@ -17,13 +17,15 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('full_name');
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('address');
             $table->string('phone')->nullable();
             $table->string('image')->nullable();
             $table->foreignId('role_id')
                 ->constrained()
                 ->cascadeOnDelete();
+
+            $table->string('unique_link')->nullable();
             $table->string('remember_token')->nullable();
             $table->timestamps();
         });

@@ -8,7 +8,7 @@
 
     <center>
         <h1 class="font-bold tracking-wide text-5xl mb-2 text-gray-700">
-            Welcome to Admin Dashboard
+            Welcome to User Dashboard
         </h1>
     </center>
 

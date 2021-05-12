@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ForgetPassEmail;
 use App\Models\Role;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -72,7 +73,7 @@ class AuthController extends Controller
             'password'=>'required|min:4|max:20',
             'confirm_password'=>'required_with:password|same:password|min:4|max:20',
             'address'=>'required',
-            'phone'=>'',
+            'phone'=>'numeric',
             'image'=>'image',
         ]);
         $user = new User;
@@ -82,7 +83,8 @@ class AuthController extends Controller
         $user->password =Hash::make($req->password) ;
         $user->address = $req->address;
         $user->phone = $req->phone;
-        $user->role_id = 2;
+        $user->role_id = Role::where('roles', 'user')->get()->first()->id;
+        $user->unique_link = str_replace(' ','_',$req->fullname).'-'.Str::random(8);
 
         if($req->hasFile('image'))
         {
@@ -143,6 +145,9 @@ class AuthController extends Controller
 
             $user = Socialite::driver('google')->stateless()->user();
 
+            //$user = Socialite::driver('github')->user();
+
+            //dd($user);
             $finduser = User::where('email', $user->email)->first();
 
             if($finduser){
@@ -175,6 +180,7 @@ class AuthController extends Controller
                 $newUser->phone = '';
                 $newUser->password = Hash::make(Str::random(8));
                 $newUser->role_id = Role::where('roles', 'user')->get()->first()->id;
+                $newUser->unique_link = str_replace(' ','_',$user->name).'-'.Str::random(8);
                 $newUser->save();
 
                 Auth::loginUsingId($newUser->id);

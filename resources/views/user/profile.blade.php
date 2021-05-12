@@ -38,6 +38,28 @@
                     @enderror
                 </div>
 
+                <div class="flex flex-col space-y-4 md:space-y-0 md:flex-col md:space-x-0">
+                    @php
+                        $link = 'cloud-storage.com/'.Auth::user()->unique_link;
+                    @endphp
+                    <div class="form-item w-full">
+                        <label class="text-xl ">User link</label>
+                        @if (url()->current() == route('user.profile'))
+                            <input name="unique_link" type="text" value="{{ $link }}" class="w-full border-2 appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25
+                            @error('email') border-red-500 @enderror"  disabled >
+                        @else
+                            <input name="unique_link" type="text" value="{{ Auth::user()->unique_link }}" class="w-full border-2 appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25
+                            @error('email') border-red-500 @enderror"  >
+                        @endif
+
+                    </div>
+                    @error('unique_link')
+                    <div class="text-red-500 block mt-2 text-sm">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
                 @if(url()->current() == route('user.editProfile'))
                 <div class="flex flex-col space-y-4 md:space-y-0 md:flex-col md:space-x-0">
                     <div class="form-item w-full">
@@ -77,6 +99,8 @@
                     @enderror
                 </div>
                 @endif
+
+
 
                 <div>
                     <h3 class="text-2xl font-semibold ">More Information</h3>
