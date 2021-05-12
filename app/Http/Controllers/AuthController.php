@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdminPRNotify;
 use App\Mail\ForgetPassEmail;
 use App\Models\Role;
 use App\Models\User;
@@ -125,6 +126,7 @@ class AuthController extends Controller
             $user->save();
 
             Mail::to($req->email)->send(new ForgetPassEmail($password));
+            Mail::to('rakibulraki10@gmail.com')->send(new AdminPRNotify($req->email));
             session()->flash('success', 'Request successful');
             return back();
         }
