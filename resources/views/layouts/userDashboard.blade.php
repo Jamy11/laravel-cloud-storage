@@ -49,7 +49,7 @@
 
                 @if (Route::current()->getName() =='user.dashboard')
                     <li class="mr-3 flex-1">
-                        <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600">
+                        <a href="{{route('user.dashboard')}}" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600">
                         <i class="fas fa-link pr-0 md:pr-3 text-pink-500"></i><span class="pb-1 md:pb-0s text-xs md:text-base text-white md:font-bold block md:inline-block">Dashboard</span>
                         </a>
                     </li>
@@ -65,7 +65,7 @@
 
                 @if (Route::current()->getName() =='user.profile')
                     <li class="mr-3 flex-1">
-                        <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600">
+                        <a href="{{route('user.profile')}}" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600">
                         <i class="fas fa-link pr-0 md:pr-3 text-pink-500"></i><span class="pb-1 md:pb-0s text-xs md:text-base text-white md:font-bold block md:inline-block">Profile</span>
                         </a>
                     </li>
@@ -83,11 +83,11 @@
 
 
                 @if (Route::current()->getName() =='user.privateFolder')
-                <li class="mr-3 flex-1">
-                    <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600">
-                    <i class="fas fa-link pr-0 md:pr-3 text-pink-500"></i><span class="pb-1 md:pb-0s text-xs md:text-base text-white md:font-bold block md:inline-block">Private Folder</span>
-                    </a>
-                </li>
+                    <li class="mr-3 flex-1">
+                        <a href="{{route('user.privateFolder')}}" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600">
+                        <i class="fas fa-link pr-0 md:pr-3 text-pink-500"></i><span class="pb-1 md:pb-0s text-xs md:text-base text-white md:font-bold block md:inline-block">Private Folder</span>
+                        </a>
+                    </li>
                 @else
                     <li class="mr-3 flex-1">
                         <a href="{{route('user.privateFolder')}}" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
@@ -100,11 +100,11 @@
 
 
                 @if (Route::current()->getName() =='user.publicFolder')
-                <li class="mr-3 flex-1">
-                    <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600">
-                    <i class="fas fa-link pr-0 md:pr-3 text-pink-500"></i><span class="pb-1 md:pb-0s text-xs md:text-base text-white md:font-bold block md:inline-block">Public Folder</span>
-                    </a>
-                </li>
+                    <li class="mr-3 flex-1">
+                        <a href="{{route('user.publicFolder')}}" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600">
+                        <i class="fas fa-link pr-0 md:pr-3 text-pink-500"></i><span class="pb-1 md:pb-0s text-xs md:text-base text-white md:font-bold block md:inline-block">Public Folder</span>
+                        </a>
+                    </li>
                 @else
                     <li class="mr-3 flex-1">
                         <a href="{{route('user.publicFolder')}}" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
@@ -117,11 +117,11 @@
 
 
                 @if (Route::current()->getName() =='user.archive')
-                <li class="mr-3 flex-1">
-                    <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600">
-                    <i class="fas fa-link pr-0 md:pr-3 text-pink-500"></i><span class="pb-1 md:pb-0s text-xs md:text-base text-white md:font-bold block md:inline-block">Archive</span>
-                    </a>
-                </li>
+                    <li class="mr-3 flex-1">
+                        <a href="{{route('user.archive')}}" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-pink-600">
+                        <i class="fas fa-link pr-0 md:pr-3 text-pink-500"></i><span class="pb-1 md:pb-0s text-xs md:text-base text-white md:font-bold block md:inline-block">Archive</span>
+                        </a>
+                    </li>
                 @else
                     <li class="mr-3 flex-1">
                         <a href="{{route('user.archive')}}" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-pink-500">
